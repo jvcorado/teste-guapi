@@ -59,11 +59,12 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex flex-col gap-3 h-full overflow-y-hidden">
+      <main className="flex flex-col gap-3 h-full overflow-y-hidden ">
         <div className="flex gap-2 w-full justify-between">
           <Search onSearch={setSearchText} />
           <New open={() => setOpenProject(!openProject)} sm />
         </div>
+
         {filteredProject.length === 0 ? (
           <div className="flex flex-col justify-between h-[70vh]  gap-3">
             <Image
@@ -85,17 +86,19 @@ export default function Home() {
           </div>
         ) : (
           filteredProject.map((item) => (
-            <Link
-              className="text-[#444648] flex items-center font-semibold justify-between gap-2  py-[5px]  rounded-md"
-              href={`/task/${item.id}`}
-              key={item.id}
-            >
-              <div className="flex gap-2 items-center">
-                <FolderOpen size={24} color="#444648" />
-                <p> {item.project}</p>
-              </div>
-              <EllipsisVertical size={24} color="#444648" />
-            </Link>
+            <>
+              <Link
+                className=" text-[#444648]  flex items-center font-semibold justify-between gap-2  py-[5px]  rounded-md"
+                href={`/task/${item.id}`}
+                key={item.id}
+              >
+                <div className="flex gap-2 items-center">
+                  <FolderOpen size={24} color="#444648" />
+                  <p> {item.project}</p>
+                </div>
+                <EllipsisVertical size={24} color="#444648" />
+              </Link>
+            </>
           ))
         )}
       </main>

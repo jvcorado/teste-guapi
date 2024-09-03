@@ -29,9 +29,9 @@ const TaskDetails = () => {
   const router = useRouter();
   const { id } = useParams();
   const [openSection, setOpenSection] = useState(false);
+  const [openSectionDesk, setOpenSectionDesk] = useState(false);
   const [section, setSection] = useState("");
   const [projects, setProjects] = useState<Project | null>(null);
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -85,15 +85,28 @@ const TaskDetails = () => {
 
   const createSection = () => {
     return (
-      <Modal
-        open={openSection}
-        create={handleAddSection}
-        title="Nova seção"
-        cancel={() => setOpenSection(!openSection)}
-      >
-        <strong className="text-[#444648] text-sm">Nome</strong>
-        <Input onChange={(e) => setSection(e.target.value)} />
-      </Modal>
+      <>
+        <Modal
+          open={openSection}
+          create={handleAddSection}
+          title="Nova seção"
+          cancel={() => setOpenSection(!openSection)}
+        >
+          <strong className="text-[#444648] text-sm">Nome</strong>
+          <Input onChange={(e) => setSection(e.target.value)} />
+        </Modal>
+      </>
+    );
+  };
+
+  const createSectionDesktop = () => {
+    return (
+      <div className="bg-amber-500 flex flex-col">
+        <input type="text" placeholder="Text" />
+        <button onClick={() => setOpenSectionDesk(!openSectionDesk)}>
+          Cancelar
+        </button>
+      </div>
     );
   };
 
@@ -106,7 +119,7 @@ const TaskDetails = () => {
 
   return (
     <>
-      <div className="flex  flex-col gap-3">
+      <div className="flex flex-col gap-3 lg:bg-white lg:min-h-full lg:p-5 lg:rounded-md">
         <div className="border-b w-full flex pb-2 items-center ">
           <button onClick={router.back} className="">
             <ChevronLeft size={24} color="#444648" />
@@ -115,7 +128,6 @@ const TaskDetails = () => {
             {projects.project}
           </h1>
         </div>
-
         <div className="flex flex-col gap-5">
           {projects.secoes
             ? projects.secoes.map((item) => (
@@ -143,8 +155,19 @@ const TaskDetails = () => {
               ))
             : null}
         </div>
-        <New open={() => setOpenSection(!openSection)} section />
+
+        <div className="block md:hidden">
+          <New open={() => setOpenSection(!openSection)} section />
+        </div>
+        <div className="md:block  hidden bg-red-400 lg:w-[25%]">
+          {!openSectionDesk && (
+            <New open={() => setOpenSectionDesk(!openSectionDesk)} section />
+          )}
+
+          {openSectionDesk && createSectionDesktop()}
+        </div>
       </div>
+
       {openSection && createSection()}
     </>
   );

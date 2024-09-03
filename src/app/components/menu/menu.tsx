@@ -49,7 +49,7 @@ export function Menus() {
 
       setFilteredProjects(filteredProjects);
     }
-  }, [isMobileMenuOpen]);
+  }, [open, isMobileMenuOpen]);
 
   return (
     <>
