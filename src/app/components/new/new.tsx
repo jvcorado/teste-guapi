@@ -25,7 +25,7 @@ export default function New({
           : "bg-[#7C00BE] text-white"
       } ${
         sm ? "h-10 w-10 justify-center" : "size-full  gap-2 text-sm "
-      } rounded flex items-center p-[10px] w-full `}
+      } rounded flex items-center p-[10px]  `}
     >
       {sm && <Plus color="white" size={24} />}
       {!section && !sm && (

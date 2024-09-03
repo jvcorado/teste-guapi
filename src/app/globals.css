@@ -6,6 +6,23 @@ body {
   color: #444648;
 }
 
+/* Estilo para navegadores Webkit (Chrome, Safari) */
+.scroll-transparent::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-transparent::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+.scroll-transparent::-webkit-scrollbar-thumb:hover {
+  display: none;
+}
+
+.scroll-transparent::-webkit-scrollbar-track {
+  display: none;
+}
+
 .loader {
 }
 
