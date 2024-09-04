@@ -37,6 +37,7 @@ export function MenusDesk() {
         // Atualiza o estado teste para true quando a busca for feita
         if (searchText) {
             setIsMobileMenuOpen(true);
+            setText(searchText);
         }
     }, [searchText, project]);
 
@@ -47,30 +48,6 @@ export function MenusDesk() {
             setProject(projects);
         }
     }, [open, isMobileMenuOpen]);
-
-    const addProject = () => {
-        if (text.trim() === '') return;
-
-        const newProject: Projects = {
-            id: Date.now(),
-            projects: text.toUpperCase(),
-        };
-
-        const newProjects = [...project, newProject];
-        setProject(newProjects);
-        localStorage.setItem('projects', JSON.stringify(newProjects));
-        setText('');
-        setOpenProject(false);
-    };
-
-    const createProject = () => {
-        return (
-            <Modal open={openProject} create={() => addProject()} cancel={() => setOpenProject(!openProject)}>
-                <strong className="text-[#444648] text-sm">Nome</strong>
-                <Input onChange={(e) => setText(e.target.value)} />
-            </Modal>
-        );
-    };
 
     const addProjectDesk = () => {
         if (text.trim() === '') return;
@@ -84,20 +61,26 @@ export function MenusDesk() {
         setProject(newProjects);
         localStorage.setItem('projects', JSON.stringify(newProjects));
         setText('');
-        router.push(`task/${newProject.id}`); // Use o ID do novo projeto aqui
+        router.replace(`/task/${newProject.id}`); // Use o ID do novo projeto aqui
         setOpenProjectDesk(false);
     };
 
     const createProjectDesk = () => {
         return (
-            <Modal open={openProjectDesk} create={() => addProjectDesk()} cancel={() => setOpenProjectDesk(!openProjectDesk)}>
+            <Modal
+                open={openProjectDesk}
+                create={() => addProjectDesk()}
+                cancel={() => {
+                    setOpenProjectDesk(!openProjectDesk);
+                    setText('');
+                    setSearchText('');
+                }}
+            >
                 <strong className="text-[#444648] text-sm">Nome</strong>
-                <Input onChange={() => setText(searchText)} />
+                <Input value={text} onChange={(e) => setText(e.target.value)} />
             </Modal>
         );
     };
-
-    console.log(searchText);
 
     return (
         <>
@@ -139,12 +122,7 @@ export function MenusDesk() {
                     <Collapse open={isMobileMenuOpen} className="flex gap-2 flex-col">
                         {filteredProjects.length === 0 ? (
                             <>
-                                <div className="flex  md:hidden w-full">
-                                    <New open={() => setOpenProject(!openProject)} section />
-                                </div>
-                                <div className="md:flex hidden w-full">
-                                    <New open={() => setOpenProjectDesk(!openProjectDesk)} section />
-                                </div>
+                                <New open={() => setOpenProjectDesk(!openProjectDesk)} sm />
                             </>
                         ) : (
                             <>
@@ -165,8 +143,7 @@ export function MenusDesk() {
                         )}
                     </Collapse>
                 </div>
-                <div className="block md:hidden">{openProject && createProject()}</div>
-                <div className="md:block hidden">{openProjectDesk && createProjectDesk()}</div>
+                {openProjectDesk && createProjectDesk()}
             </div>
         </>
     );

@@ -25,9 +25,20 @@ export function Menus() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [project, setProjects] = useState<Projects[]>([]);
+    const [filteredProjects, setFilteredProjects] = useState<Projects[]>([]);
 
     const openDrawer = () => setOpen(true);
     const closeDrawer = () => setOpen(false);
+
+    useEffect(() => {
+        const filteredProject = project.filter((project) => project?.projects?.toLowerCase().includes(searchText.toLowerCase()));
+        setFilteredProjects(filteredProject);
+
+        // Atualiza o estado teste para true quando a busca for feita
+        if (searchText) {
+            setIsMobileMenuOpen(true);
+        }
+    }, [searchText, project]);
 
     useEffect(() => {
         const storedProjects = localStorage.getItem('projects');
@@ -36,8 +47,6 @@ export function Menus() {
             setProjects(projects);
         }
     }, [open, isMobileMenuOpen]);
-
-    const filteredProjects = project.filter((p) => p?.projects?.toLowerCase().includes(searchText.toLowerCase()));
 
     return (
         <>
