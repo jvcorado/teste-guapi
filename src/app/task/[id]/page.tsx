@@ -3,7 +3,7 @@ import Input from '@/app/components/input/input';
 import InputDesk from '@/app/components/inputDesk/inputDesk';
 import Loader from '@/app/components/loader/loader';
 import { Modal } from '@/app/components/modal/modal';
-import { ModalCrud } from '@/app/components/modalCrud/modal';
+
 import New from '@/app/components/new/new';
 import { Avatar } from '@material-tailwind/react';
 import { AlignVerticalSpaceAround, CalendarDays, ChevronLeft, EllipsisVertical, FileText, Flag, Tag } from 'lucide-react';
@@ -273,7 +273,14 @@ const TaskDetails = () => {
                                               <New open={() => {}} subtarefa />
                                               <hr className="border " />
                                               <div className="flex gap-3 items-center">
-                                                  <Avatar size="sm" src="https://docs.material-tailwind.com/img/face-2.jpg" alt="avatar" />
+                                                  <Avatar
+                                                      size="sm"
+                                                      src="https://docs.material-tailwind.com/img/face-2.jpg"
+                                                      alt="avatar"
+                                                      placeholder={undefined}
+                                                      onPointerEnterCapture={undefined}
+                                                      onPointerLeaveCapture={undefined}
+                                                  />
                                                   <Input onChange={() => {}} placeholder="Comentar" />
                                               </div>
                                           </div>,
@@ -294,6 +301,8 @@ const TaskDetails = () => {
         );
     };
 
+    console.log(projects);
+
     if (!projects)
         return (
             <>
@@ -305,7 +314,7 @@ const TaskDetails = () => {
         <>
             <div className="flex flex-col gap-3 lg:bg-white  lg:min-h-full lg:px-5 lg:pt-5 lg:rounded-md lg:border-2">
                 <div className="border-b w-full flex pb-2 lg:pb-4 items-center ">
-                    <button onClick={router.back} className="">
+                    <button onClick={router.back} className="md:hidden">
                         <ChevronLeft size={24} color="#444648" />
                     </button>
                     <h1 className="mx-auto uppercase  text-base font-semibold text-center ">{projects.projects}</h1>
@@ -318,6 +327,3 @@ const TaskDetails = () => {
 };
 
 export default TaskDetails;
-function setSelectedTask(task: any) {
-    throw new Error('Function not implemented.');
-}

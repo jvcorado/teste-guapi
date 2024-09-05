@@ -87,18 +87,30 @@ export function MenusDesk() {
             <div className="p-4 flex flex-col gap-3 ">
                 <div className="mb-6 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <Avatar size="sm" src="https://docs.material-tailwind.com/img/face-2.jpg" alt="avatar" />
-                        <Typography variant="small">Nome do Usuário</Typography>
+                        <Avatar
+                            size="sm"
+                            src="https://docs.material-tailwind.com/img/face-2.jpg"
+                            alt="avatar"
+                            placeholder={undefined}
+                            onPointerEnterCapture={undefined}
+                            onPointerLeaveCapture={undefined}
+                        />
+                        <Typography variant="small" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                            Nome do Usuário
+                        </Typography>
                     </div>
                 </div>
                 <Search onSearch={setSearchText} />
                 <Menu open={isMenuOpen} handler={setIsMenuOpen} offset={{ mainAxis: 20 }} placement="bottom">
                     <MenuHandler>
-                        <Typography as="div" variant="small" className="font-medium">
+                        <Typography as="div" variant="small" className="font-medium" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                             <ListItem
                                 className={`${isMobileMenuOpen ? '!bg-[#ECD9F5]' : '!bg-transparent'}   flex items-center  justify-between gap-2 py-2  pr-4 font-medium text-sm`}
                                 selected={isMenuOpen || isMobileMenuOpen}
                                 onClick={() => setIsMobileMenuOpen((cur) => !cur)}
+                                placeholder={undefined}
+                                onPointerEnterCapture={undefined}
+                                onPointerLeaveCapture={undefined}
                             >
                                 <div className={`${isMobileMenuOpen ? 'text-[#7C00BE]' : ''} flex gap-2  items-center`}>
                                     <FolderOpen size={24} /> Meus projetos

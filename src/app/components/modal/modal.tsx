@@ -20,8 +20,13 @@ export function Modal({
     subtitle?: string;
 }) {
     return (
-        <Dialog open={open} handler={cancel} className="">
-            <DialogHeader className="font-semibold text-sm flex items-center justify-between border-b-2">
+        <Dialog open={open} handler={cancel} className="" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+            <DialogHeader
+                className="font-semibold text-sm flex items-center justify-between border-b-2"
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+            >
                 <div className="flex items-center gap-2 text-[#444648]">
                     <FolderOpen size={24} />
                     {subtitle ? (
@@ -37,8 +42,10 @@ export function Modal({
                     <X size={24} color="#444648" />
                 </button>
             </DialogHeader>
-            <DialogBody>{children}</DialogBody>
-            <DialogFooter className="border-t-2 flex items-center gap-5">
+            <DialogBody placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                {children}
+            </DialogBody>
+            <DialogFooter className="border-t-2 flex items-center gap-5" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                 <button onClick={cancel} className="text-[#444648] text-sm">
                     Cancelar
                 </button>

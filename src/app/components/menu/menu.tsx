@@ -53,14 +53,30 @@ export function Menus() {
             <button onClick={openDrawer}>
                 <MenuIcon />
             </button>
-            <Drawer open={open} onClose={closeDrawer} className="p-4 flex flex-col gap-3">
+            <Drawer
+                open={open}
+                onClose={closeDrawer}
+                className="p-4 flex flex-col gap-3"
+                placeholder={undefined}
+                onPointerEnterCapture={undefined}
+                onPointerLeaveCapture={undefined}
+            >
                 <div className="mb-6 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <Avatar size="sm" src="https://docs.material-tailwind.com/img/face-2.jpg" alt="avatar" />
-                        <Typography variant="small">Nome do Usuário</Typography>
+                        <Avatar
+                            size="sm"
+                            src="https://docs.material-tailwind.com/img/face-2.jpg"
+                            alt="avatar"
+                            placeholder={undefined}
+                            onPointerEnterCapture={undefined}
+                            onPointerLeaveCapture={undefined}
+                        />
+                        <Typography variant="small" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                            Nome do Usuário
+                        </Typography>
                     </div>
 
-                    <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
+                    <IconButton variant="text" color="blue-gray" onClick={closeDrawer} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-5 w-5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -69,11 +85,14 @@ export function Menus() {
                 <Search onSearch={setSearchText} />
                 <Menu open={isMenuOpen} handler={setIsMenuOpen} offset={{ mainAxis: 20 }} placement="bottom">
                     <MenuHandler>
-                        <Typography as="div" variant="small" className="font-medium">
+                        <Typography as="div" variant="small" className="font-medium" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                             <ListItem
                                 className={`${isMobileMenuOpen ? '!bg-[#ECD9F5]' : '!bg-transparent'}   flex items-center  justify-between gap-2 py-2  pr-4 font-medium text-sm`}
                                 selected={isMenuOpen || isMobileMenuOpen}
                                 onClick={() => setIsMobileMenuOpen((cur) => !cur)}
+                                placeholder={undefined}
+                                onPointerEnterCapture={undefined}
+                                onPointerLeaveCapture={undefined}
                             >
                                 <div className={`${isMobileMenuOpen ? 'text-[#7C00BE]' : ''} flex gap-2  items-center`}>
                                     <FolderOpen size={24} /> Meus projetos
@@ -92,7 +111,12 @@ export function Menus() {
                             </ListItem>
                         </Typography>
                     </MenuHandler>
-                    <MenuList className="hidden max-w-screen-xl bg-yellow-600 rounded-xl lg:block">
+                    <MenuList
+                        className="hidden max-w-screen-xl bg-yellow-600 rounded-xl lg:block"
+                        placeholder={undefined}
+                        onPointerEnterCapture={undefined}
+                        onPointerLeaveCapture={undefined}
+                    >
                         {filteredProjects.map((item) => (
                             <p key={item.id} className="text-gray-900">
                                 {item.projects}

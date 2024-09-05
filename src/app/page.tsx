@@ -129,8 +129,8 @@ export default function Home() {
         const newProjects = [...project, newProject];
         setProject(newProjects);
         localStorage.setItem('projects', JSON.stringify(newProjects));
+        router.replace(`task/${newProject.id}`);
         setText('');
-        router.push(`task/${newProject.id}`); // Use o ID do novo projeto aqui
         setOpenProjectDesk(false);
     };
 
@@ -158,7 +158,7 @@ export default function Home() {
                     <Search onSearch={setSearchText} />
                     <New open={() => setOpenProject(!openProject)} sm />
                 </div>
-                <div className="md:flex gap-2 hidden w-full justify-between">
+                <div className="md:flex gap-2 hidden w-full justify-between ">
                     <Search onSearch={setSearchText} />
                     <New open={() => setOpenProjectDesk(!openProjectDesk)} sm />
                 </div>
